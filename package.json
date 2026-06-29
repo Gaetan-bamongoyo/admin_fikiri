@@ -30,7 +30,10 @@
     "onlyBuiltDependencies": [
       "@nestjs/core",
       "@scarf/scarf",
-      "bcrypt"
+      "bcrypt",
+      "msw",
+      "sharp",
+      "unrs-resolver"
     ]
   }
 }
