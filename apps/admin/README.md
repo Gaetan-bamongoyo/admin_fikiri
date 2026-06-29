@@ -33,11 +33,13 @@ Or from this directory (after root `pnpm install`):
 pnpm dev
 ```
 
-Optional environment file:
+Optional environment file (local dev only — not used on Vercel):
 
 ```bash
-cp .env.example .env
+cp .env.example .env.local
 ```
+
+On **Vercel**, add the same variables in **Project Settings → Environment Variables** (do not commit `.env` files).
 
 ---
 

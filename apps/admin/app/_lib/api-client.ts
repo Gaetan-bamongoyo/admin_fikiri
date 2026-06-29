@@ -5,9 +5,7 @@
  * à défaut, on retombe sur l'API locale de développement.
  */
 import { clearAuth, getToken } from "./auth-storage";
-
-const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:7540/api/v1";
+import { getApiBaseUrl } from "./api-base-url";
 
 /** Erreur levée pour toute réponse HTTP non 2xx. */
 export class ApiError extends Error {
@@ -32,8 +30,9 @@ interface RequestOptions extends Omit<RequestInit, "body"> {
 }
 
 function buildUrl(path: string, params?: QueryParams): string {
-  const base = API_BASE_URL.endsWith("/") ? API_BASE_URL : `${API_BASE_URL}/`;
-  const url = new URL(path.replace(/^\//, ""), base);
+  const base = getApiBaseUrl();
+  const normalized = base.endsWith("/") ? base : `${base}/`;
+  const url = new URL(path.replace(/^\//, ""), normalized);
 
   if (params) {
     for (const [key, value] of Object.entries(params)) {

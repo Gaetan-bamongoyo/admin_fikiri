@@ -5,6 +5,7 @@ import { io, type Socket } from "socket.io-client";
 import { useQueryClient } from "@tanstack/react-query";
 
 import { ACTIVE_RIDE_STATUSES, rideKeys, type Ride } from "./queries/rides";
+import { getApiOrigin } from "./api-base-url";
 
 export interface DriverPosition {
   driverId: string;
@@ -19,13 +20,7 @@ export interface DriverPosition {
 
 /** Déduit l'origine du serveur Socket.IO à partir de l'URL de l'API REST. */
 function socketBaseUrl(): string {
-  const apiUrl =
-    process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:7540/api/v1";
-  try {
-    return new URL(apiUrl).origin;
-  } catch {
-    return "http://localhost:7540";
-  }
+  return getApiOrigin();
 }
 
 /**
