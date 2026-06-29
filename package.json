@@ -1,0 +1,36 @@
+{
+  "name": "fikiri-traffic",
+  "private": true,
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "dev:mobile": "turbo run dev --filter=@fikiri/mobile",
+    "dev:api": "turbo run dev --filter=@fikiri/api",
+    "dev:admin": "turbo run dev --filter=@fikiri/admin",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "format": "turbo run format",
+    "docker:db": "docker compose up -d db",
+    "docker:up": "docker compose --profile full up -d --build",
+    "docker:dev": "docker compose -f docker-compose.yml -f docker-compose.dev.yml --profile full up --build",
+    "docker:down": "docker compose --profile full down",
+    "docker:logs": "docker compose logs -f api",
+    "docker:logs:db": "docker compose logs -f db"
+  },
+  "devDependencies": {
+    "cross-env": "^10.1.0",
+    "turbo": "^2.5.4"
+  },
+  "engines": {
+    "node": ">=20",
+    "pnpm": ">=9"
+  },
+  "packageManager": "pnpm@10.12.1",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@nestjs/core",
+      "@scarf/scarf",
+      "bcrypt"
+    ]
+  }
+}

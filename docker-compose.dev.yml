@@ -1,0 +1,28 @@
+# Dev override: hot-reload API via bind mount (requires local node_modules).
+#
+# Usage:
+#   pnpm install
+#   cp .env.docker.example .env.docker
+#   docker compose -f docker-compose.yml -f docker-compose.dev.yml up
+#
+# API source is mounted; run `pnpm install` on the host first.
+
+name: fikiri-traffic
+
+services:
+  api:
+    profiles: ["full"]
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+      target: build
+    command: sh -c "pnpm --filter @fikiri/api migration:run && pnpm --filter @fikiri/api start:dev"
+    working_dir: /app
+    environment:
+      NODE_ENV: development
+      CHOKIDAR_USEPOLLING: "true"
+    volumes:
+      - ./apps/api/src:/app/apps/api/src
+      - ./apps/api/tsconfig.json:/app/apps/api/tsconfig.json
+      - ./apps/api/tsconfig.build.json:/app/apps/api/tsconfig.build.json
+      - ./apps/api/nest-cli.json:/app/apps/api/nest-cli.json

@@ -1,0 +1,89 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  TURBO_TELEMETRY_DISABLED: 1
+  NODE_VERSION: 20
+
+jobs:
+  node:
+    name: Node (${{ matrix.app }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        app: [api, admin]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.12.1
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Format check
+        if: matrix.app == 'api'
+        run: pnpm --filter=@fikiri/api exec prettier --check "src/**/*.ts"
+
+      - name: Lint
+        run: pnpm exec turbo run lint --filter=@fikiri/${{ matrix.app }}
+
+      - name: Type check
+        if: matrix.app == 'api'
+        run: pnpm --filter=@fikiri/api exec tsc --noEmit
+
+      - name: Build
+        run: pnpm exec turbo run build --filter=@fikiri/${{ matrix.app }}
+
+      - name: Test
+        if: matrix.app == 'api'
+        run: pnpm exec turbo run test --filter=@fikiri/api
+        env:
+          NODE_ENV: test
+
+  mobile:
+    name: Mobile (Flutter)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/mobile
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Format check
+        run: dart format --set-exit-if-changed .
+
+      - name: Analyze
+        run: flutter analyze
+
+      - name: Test
+        run: flutter test

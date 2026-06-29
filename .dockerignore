@@ -1,0 +1,28 @@
+# Dependencies & build artifacts
+**/node_modules
+**/.turbo
+**/dist
+**/.next
+**/coverage
+
+# Flutter / mobile
+apps/mobile
+
+# Environment & secrets
+**/.env
+**/.env.*
+!.env.docker.example
+
+# Git & IDE
+.git
+.github
+.vscode
+.idea
+
+# OS & logs
+**/.DS_Store
+**/*.log
+
+# Docker
+Dockerfile*
+docker-compose*.yml

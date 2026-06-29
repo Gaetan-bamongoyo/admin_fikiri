@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "359736129628",
+    "project_id": "fikiri-traffic",
+    "storage_bucket": "fikiri-traffic.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:359736129628:android:66507121e47b147cf5ce99",
+        "android_client_info": {
+          "package_name": "com.example.fikiri_front"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIae_xBZfdmXFCzYEOiCcOPnXe9H_P38Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

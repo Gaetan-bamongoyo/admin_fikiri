@@ -1,0 +1,41 @@
+{
+  "name": "@fikiri/admin",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 7541",
+    "build": "next build",
+    "start": "next start -p 7541",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@fikiri/ui": "workspace:*",
+    "@tanstack/react-query": "^5.101.0",
+    "leaflet": "^1.9.4",
+    "leaflet.markercluster": "^1.5.3",
+    "lucide-react": "^0.511.0",
+    "maplibre-gl": "^5.24.0",
+    "next": "16.2.6",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "react-icons": "^5.6.0",
+    "react-leaflet": "^5.0.0",
+    "react-leaflet-marker": "^2.1.1",
+    "recharts": "3.8.0",
+    "socket.io-client": "^4.8.3"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@tanstack/eslint-plugin-query": "^5.101.0",
+    "@tanstack/react-query-devtools": "^5.101.0",
+    "@types/leaflet": "^1.9.21",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@types/react-leaflet": "^3.0.0",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.6",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}

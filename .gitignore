@@ -1,0 +1,108 @@
+# ======================
+# NestJS / Next.js
+# ======================
+
+node_modules/
+package-lock.json
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-store/
+
+# Build
+dist/
+build/
+.next/
+out/
+
+# Environment
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.docker
+
+# Logs
+logs/
+*.log
+
+# Cache
+.cache/
+.npm/
+.turbo/
+
+# ======================
+# Flutter
+# ======================
+
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+
+build/
+
+# Generated
+*.g.dart
+*.freezed.dart
+
+# Android
+android/.gradle/
+android/app/debug/
+android/app/profile/
+android/app/release/
+
+# iOS
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+
+# ======================
+# IDE
+# ======================
+
+.vscode/
+.idea/
+
+*.iml
+
+# ======================
+# OS
+# ======================
+
+.DS_Store
+Thumbs.db
+
+# ======================
+# Coverage
+# ======================
+
+coverage/
+
+# ======================
+# Python (api_python)
+# ======================
+
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Firebase Admin SDK (ne jamais versionner)
+**/fikiri-traffic-firebase-adminsdk*.json
+
+# Scripts / tests manuels notifications (dev local)
+apps/api_python/scripts/test_push_notification.py
+apps/api_python/scripts/check_firebase_projects.py
+apps/api_python/scripts/run_home_work_alerts.py
+apps/api_python/tests/test_notifications.py
+apps/api_python/tests/test_home_work_alerts.py
+
+# ======================
+# Temporary files
+# ======================
+
+*.tmp
+*.temp
